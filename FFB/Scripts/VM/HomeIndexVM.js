@@ -49,6 +49,13 @@ var Schedule = function () {
 var Home = function () {
     var self = this;
 
+    self.ShowQB = ko.observable(true);
+    self.ShowRB = ko.observable(true);
+    self.ShowWR = ko.observable(true);
+    self.ShowTE = ko.observable(true);
+    self.ShowDST = ko.observable(true);
+    self.ShowFLEX = ko.observable(true);
+
     self.ScheduleList = ko.observableArray([]);
     self.GetScheduleList = function () {
         jQuery.getJSON("../api/HomeAPI/GetSchedules", {}, function (data) {

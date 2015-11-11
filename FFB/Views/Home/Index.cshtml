@@ -1,10 +1,36 @@
 ﻿<script src="~/Scripts/VM/HomeIndexVM.js"></script>
 
-<div class="row" id="schedule-selection">
-    <div class="col-xs-4">
+<div class="row pad-top-15" id="schedule-selection">
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="showQB" class="control-label">Show QB <input type="checkbox" id="showQB" data-bind="checked: ShowQB, value: ShowQB" /></label>
+            </div>
+            <div class="col-xs-4">
+                <label for="showRB" class="control-label">Show RB <input type="checkbox" id="showRB" data-bind="checked: ShowRB, value: ShowRB" /></label>
+            </div>
+            <div class="col-xs-4">
+                <label for="showWR" class="control-label">Show WR <input type="checkbox" id="showWR" data-bind="checked: ShowWR, value: ShowWR" /></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="showTE" class="control-label">Show TE <input type="checkbox" id="showTE" data-bind="checked: ShowTE, value: ShowTE" /></label>
+            </div>
+            <div class="col-xs-4">
+                <label for="showDST" class="control-label">Show DST <input type="checkbox" id="showDST" data-bind="checked: ShowDST, value: ShowDST" /></label>
+            </div>
+            <div class="col-xs-4">
+                <label for="showFLEX" class="control-label">Show FLEX <input type="checkbox" id="showFLEX" data-bind="checked: ShowFLEX, value: ShowFLEX" /></label>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+    </div>
+    <div class="col-xs-6">
         <fieldset>
             <legend>Schedule Selection</legend>
-            <label for="scheduleSelection" class="control-label pad-top-15">Select schedule of games to pick players from.</label>
+            <label for="scheduleSelection" class="control-label">Select schedule of games to pick players from.</label>
             <select id="scheduleSelection" name="ScheduleSelection" class="form-control" data-bind="">
 
             </select>
@@ -13,7 +39,7 @@
     </div>
 </div>
 <div class="row" id="player-selection" data-bind="visible: !PlayerSelectionComplete()">
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-6 col-xs-12 pad-top-15">
         <table class="table">
             <thead>
                 <tr>
@@ -25,7 +51,7 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach: Players">
-                <tr data-bind="css: { 'bg-success': SelectPlayer() }">
+                <tr data-bind="visible: $root.ShowQB() || $root.ShowRB() || $root.ShowWR() || $root.ShowTE() || $root.ShowDST() || $root.ShowFLEX()">
                     <td class="text-left" data-bind="text: Name"></td>
                     <td class="text-center" data-bind="text: Position"></td>
                     <td class="text-center" data-bind="text: AvgPointsPerGame"></td>
@@ -35,7 +61,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-6 col-xs-12 pad-top-15">
         <div class="row">
             <div class="col-xs-12">
                 <table class="table">
@@ -68,7 +94,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 pad-top-15">
                 <table class="table">
             <thead>
                 <tr>
