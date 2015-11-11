@@ -35,8 +35,27 @@ var LineUp = function () {
     self.ProjectedFFP = ko.observable();
 };
 
+var Schedule = function () {
+    var self = this;
+
+    Id = ko.observable();
+    ScheduleTypeId = ko.observable();
+    ScheduleTypeName = ko.observable();
+    Year = ko.observable();
+    Week = ko.observable();
+    Note = ko.observable();
+};
+
 var Home = function () {
     var self = this;
+
+    self.ScheduleList = ko.observableArray([]);
+    self.GetScheduleList = function () {
+        jQuery.getJSON("../api/HomeAPI/GetSchedules", {}, function (data) {
+            var allSchedules = [];
+            console.log(data);
+        });
+    };
 
     self.Players = ko.observableArray([]);
     self.GetAllPlayersList = function () {

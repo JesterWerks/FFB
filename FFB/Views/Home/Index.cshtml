@@ -1,5 +1,17 @@
 ﻿<script src="~/Scripts/VM/HomeIndexVM.js"></script>
 
+<div class="row" id="schedule-selection">
+    <div class="col-xs-4">
+        <fieldset>
+            <legend>Schedule Selection</legend>
+            <label for="scheduleSelection" class="control-label pad-top-15">Select schedule of games to pick players from.</label>
+            <select id="scheduleSelection" name="ScheduleSelection" class="form-control" data-bind="">
+
+            </select>
+        </fieldset>
+        
+    </div>
+</div>
 <div class="row" id="player-selection" data-bind="visible: !PlayerSelectionComplete()">
     <div class="col-md-6 col-xs-12">
         <table class="table">

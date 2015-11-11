@@ -10,6 +10,23 @@ namespace FFB.Domain.SiteLogic
 {
     public class HomeLogic
     {
+        public static List<ScheduleModel> GetSchedules()
+        {
+            using (FFBcontext context = new FFBcontext())
+            {
+                return (from s in context.Schedules
+                        join st in context.Schedule_Types on s.Schedule_Type_Id equals st.Id
+                        select new ScheduleModel { 
+                            Id = s.Id,
+                            Note = s.Note,
+                            ScheduleTypeId = s.Schedule_Type_Id,
+                            ScheduleTypeName = st.Name,
+                            Week = s.Week,
+                            Year = s.Year
+                        }).ToList();
+            }
+        }
+        
         public static List<PlayerModel> GetAllPlayers()
         {
             using (FFBcontext context = new FFBcontext())
