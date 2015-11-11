@@ -27,5 +27,7 @@ namespace Data.EntityFramework
     
         public DbSet<LineUps> LineUps { get; set; }
         public DbSet<Players> Players { get; set; }
+        public DbSet<Schedule_Types> Schedule_Types { get; set; }
+        public DbSet<Schedules> Schedules { get; set; }
     }
 }

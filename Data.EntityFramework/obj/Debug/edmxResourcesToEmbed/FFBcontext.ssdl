@@ -1,51 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="FFBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="FFBModelStoreContainer">
-    <EntitySet Name="LineUps" EntityType="FFBModel.Store.LineUps" store:Type="Tables" store:Schema="dbo" store:Name="LineUps">
-      <DefiningQuery>SELECT 
-      [LineUps].[Id] AS [Id], 
-      [LineUps].[QB] AS [QB], 
-      [LineUps].[RB1] AS [RB1], 
-      [LineUps].[RB2] AS [RB2], 
-      [LineUps].[WR1] AS [WR1], 
-      [LineUps].[WR2] AS [WR2], 
-      [LineUps].[WR3] AS [WR3], 
-      [LineUps].[TE] AS [TE], 
-      [LineUps].[FLEX] AS [FLEX], 
-      [LineUps].[DST] AS [DST], 
-      [LineUps].[Total_Salary] AS [Total_Salary], 
-      [LineUps].[Projected_FFP] AS [Projected_FFP]
-      FROM [dbo].[LineUps] AS [LineUps]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Players" EntityType="FFBModel.Store.Players" store:Type="Tables" store:Schema="dbo" store:Name="Players">
-      <DefiningQuery>SELECT 
-      [Players].[Id] AS [Id], 
-      [Players].[Name] AS [Name], 
-      [Players].[Salary] AS [Salary], 
-      [Players].[AvgPointsPerGame] AS [AvgPointsPerGame], 
-      [Players].[Position] AS [Position], 
-      [Players].[GameInfo] AS [GameInfo], 
-      [Players].[teamAbbrev] AS [teamAbbrev]
-      FROM [dbo].[Players] AS [Players]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="LineUps" EntityType="FFBModel.Store.LineUps" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Players" EntityType="FFBModel.Store.Players" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Schedule_Types" EntityType="FFBModel.Store.Schedule_Types" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Schedules" EntityType="FFBModel.Store.Schedules" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Schedules_Schedule_Types" Association="FFBModel.Store.FK_Schedules_Schedule_Types">
+      <End Role="Schedule_Types" EntitySet="Schedule_Types" />
+      <End Role="Schedules" EntitySet="Schedules" />
+    </AssociationSet>
   </EntityContainer>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'FFB.dbo.LineUps' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="LineUps">
     <Key>
       <PropertyRef Name="Id" />
-      <PropertyRef Name="QB" />
-      <PropertyRef Name="RB1" />
-      <PropertyRef Name="RB2" />
-      <PropertyRef Name="WR1" />
-      <PropertyRef Name="WR2" />
-      <PropertyRef Name="WR3" />
-      <PropertyRef Name="TE" />
-      <PropertyRef Name="FLEX" />
-      <PropertyRef Name="DST" />
-      <PropertyRef Name="Total_Salary" />
-      <PropertyRef Name="Projected_FFP" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="QB" Type="int" Nullable="false" />
@@ -60,18 +27,9 @@
     <Property Name="Total_Salary" Type="decimal" Nullable="false" Precision="4" Scale="2" />
     <Property Name="Projected_FFP" Type="decimal" Nullable="false" Precision="5" Scale="2" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'FFB.dbo.Players' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="Players">
     <Key>
       <PropertyRef Name="Id" />
-      <PropertyRef Name="Name" />
-      <PropertyRef Name="Salary" />
-      <PropertyRef Name="AvgPointsPerGame" />
-      <PropertyRef Name="Position" />
-      <PropertyRef Name="GameInfo" />
-      <PropertyRef Name="teamAbbrev" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="60" />
@@ -81,4 +39,33 @@
     <Property Name="GameInfo" Type="varchar" Nullable="false" MaxLength="128" />
     <Property Name="teamAbbrev" Type="varchar" Nullable="false" MaxLength="3" />
   </EntityType>
+  <EntityType Name="Schedule_Types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="Schedules">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Schedule_Type_Id" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Week" Type="int" Nullable="false" />
+    <Property Name="Note" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_Schedules_Schedule_Types">
+    <End Role="Schedule_Types" Type="FFBModel.Store.Schedule_Types" Multiplicity="1" />
+    <End Role="Schedules" Type="FFBModel.Store.Schedules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule_Types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedules">
+        <PropertyRef Name="Schedule_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

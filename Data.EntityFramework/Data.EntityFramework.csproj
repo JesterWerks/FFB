@@ -75,6 +75,12 @@
       <DependentUpon>FFBcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schedules.cs">
+      <DependentUpon>FFBcontext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule_Types.cs">
+      <DependentUpon>FFBcontext.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

@@ -4,53 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FFBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FFBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="FFBModelStoreContainer">
-          <EntitySet Name="LineUps" EntityType="FFBModel.Store.LineUps" store:Type="Tables" store:Schema="dbo" store:Name="LineUps">
-            <DefiningQuery>SELECT 
-      [LineUps].[Id] AS [Id], 
-      [LineUps].[QB] AS [QB], 
-      [LineUps].[RB1] AS [RB1], 
-      [LineUps].[RB2] AS [RB2], 
-      [LineUps].[WR1] AS [WR1], 
-      [LineUps].[WR2] AS [WR2], 
-      [LineUps].[WR3] AS [WR3], 
-      [LineUps].[TE] AS [TE], 
-      [LineUps].[FLEX] AS [FLEX], 
-      [LineUps].[DST] AS [DST], 
-      [LineUps].[Total_Salary] AS [Total_Salary], 
-      [LineUps].[Projected_FFP] AS [Projected_FFP]
-      FROM [dbo].[LineUps] AS [LineUps]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Players" EntityType="FFBModel.Store.Players" store:Type="Tables" store:Schema="dbo" store:Name="Players">
-            <DefiningQuery>SELECT 
-      [Players].[Id] AS [Id], 
-      [Players].[Name] AS [Name], 
-      [Players].[Salary] AS [Salary], 
-      [Players].[AvgPointsPerGame] AS [AvgPointsPerGame], 
-      [Players].[Position] AS [Position], 
-      [Players].[GameInfo] AS [GameInfo], 
-      [Players].[teamAbbrev] AS [teamAbbrev]
-      FROM [dbo].[Players] AS [Players]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="LineUps" EntityType="FFBModel.Store.LineUps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Players" EntityType="FFBModel.Store.Players" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Schedule_Types" EntityType="FFBModel.Store.Schedule_Types" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Schedules" EntityType="FFBModel.Store.Schedules" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Schedules_Schedule_Types" Association="FFBModel.Store.FK_Schedules_Schedule_Types">
+            <End Role="Schedule_Types" EntitySet="Schedule_Types" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'FFB.dbo.LineUps' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="LineUps">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="QB" />
-            <PropertyRef Name="RB1" />
-            <PropertyRef Name="RB2" />
-            <PropertyRef Name="WR1" />
-            <PropertyRef Name="WR2" />
-            <PropertyRef Name="WR3" />
-            <PropertyRef Name="TE" />
-            <PropertyRef Name="FLEX" />
-            <PropertyRef Name="DST" />
-            <PropertyRef Name="Total_Salary" />
-            <PropertyRef Name="Projected_FFP" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="QB" Type="int" Nullable="false" />
@@ -65,18 +32,9 @@
           <Property Name="Total_Salary" Type="decimal" Nullable="false" Precision="4" Scale="2" />
           <Property Name="Projected_FFP" Type="decimal" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'FFB.dbo.Players' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Players">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Salary" />
-            <PropertyRef Name="AvgPointsPerGame" />
-            <PropertyRef Name="Position" />
-            <PropertyRef Name="GameInfo" />
-            <PropertyRef Name="teamAbbrev" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="60" />
@@ -86,61 +44,109 @@
           <Property Name="GameInfo" Type="varchar" Nullable="false" MaxLength="128" />
           <Property Name="teamAbbrev" Type="varchar" Nullable="false" MaxLength="3" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="Schedule_Types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Schedules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Schedule_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Week" Type="int" Nullable="false" />
+          <Property Name="Note" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_Schedules_Schedule_Types">
+          <End Role="Schedule_Types" Type="FFBModel.Store.Schedule_Types" Multiplicity="1" />
+          <End Role="Schedules" Type="FFBModel.Store.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule_Types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Schedule_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FFBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FFBcontext" p1:LazyLoadingEnabled="true">
           <EntitySet Name="LineUps" EntityType="FFBModel.LineUps" />
           <EntitySet Name="Players" EntityType="FFBModel.Players" />
+          <EntitySet Name="Schedule_Types" EntityType="FFBModel.Schedule_Types" />
+          <EntitySet Name="Schedules" EntityType="FFBModel.Schedules" />
+          <AssociationSet Name="FK_Schedules_Schedule_Types" Association="FFBModel.FK_Schedules_Schedule_Types">
+            <End Role="Schedule_Types" EntitySet="Schedule_Types" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="LineUps">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="QB" />
-            <PropertyRef Name="RB1" />
-            <PropertyRef Name="RB2" />
-            <PropertyRef Name="WR1" />
-            <PropertyRef Name="WR2" />
-            <PropertyRef Name="WR3" />
-            <PropertyRef Name="TE" />
-            <PropertyRef Name="FLEX" />
-            <PropertyRef Name="DST" />
-            <PropertyRef Name="Total_Salary" />
-            <PropertyRef Name="Projected_FFP" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="QB" Type="Int32" Nullable="false" />
-          <Property Name="RB1" Type="Int32" Nullable="false" />
-          <Property Name="RB2" Type="Int32" Nullable="false" />
-          <Property Name="WR1" Type="Int32" Nullable="false" />
-          <Property Name="WR2" Type="Int32" Nullable="false" />
-          <Property Name="WR3" Type="Int32" Nullable="false" />
-          <Property Name="TE" Type="Int32" Nullable="false" />
-          <Property Name="FLEX" Type="Int32" Nullable="false" />
-          <Property Name="DST" Type="Int32" Nullable="false" />
-          <Property Name="Total_Salary" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="Projected_FFP" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="QB" Nullable="false" />
+          <Property Type="Int32" Name="RB1" Nullable="false" />
+          <Property Type="Int32" Name="RB2" Nullable="false" />
+          <Property Type="Int32" Name="WR1" Nullable="false" />
+          <Property Type="Int32" Name="WR2" Nullable="false" />
+          <Property Type="Int32" Name="WR3" Nullable="false" />
+          <Property Type="Int32" Name="TE" Nullable="false" />
+          <Property Type="Int32" Name="FLEX" Nullable="false" />
+          <Property Type="Int32" Name="DST" Nullable="false" />
+          <Property Type="Decimal" Name="Total_Salary" Nullable="false" Precision="4" Scale="2" />
+          <Property Type="Decimal" Name="Projected_FFP" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="Players">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Salary" />
-            <PropertyRef Name="AvgPointsPerGame" />
-            <PropertyRef Name="Position" />
-            <PropertyRef Name="GameInfo" />
-            <PropertyRef Name="teamAbbrev" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
-          <Property Name="Salary" Type="Int32" Nullable="false" />
-          <Property Name="AvgPointsPerGame" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="Position" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
-          <Property Name="GameInfo" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
-          <Property Name="teamAbbrev" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Salary" Nullable="false" />
+          <Property Type="Decimal" Name="AvgPointsPerGame" Nullable="false" Precision="4" Scale="2" />
+          <Property Type="String" Name="Position" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GameInfo" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="teamAbbrev" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Schedule_Types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Schedules" Relationship="FFBModel.FK_Schedules_Schedule_Types" FromRole="Schedule_Types" ToRole="Schedules" />
+        </EntityType>
+        <EntityType Name="Schedules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Schedule_Type_Id" Nullable="false" />
+          <Property Type="Int32" Name="Year" Nullable="false" />
+          <Property Type="Int32" Name="Week" Nullable="false" />
+          <Property Type="String" Name="Note" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Schedule_Types" Relationship="FFBModel.FK_Schedules_Schedule_Types" FromRole="Schedules" ToRole="Schedule_Types" />
+        </EntityType>
+        <Association Name="FK_Schedules_Schedule_Types">
+          <End Type="FFBModel.Schedule_Types" Role="Schedule_Types" Multiplicity="1" />
+          <End Type="FFBModel.Schedules" Role="Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule_Types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Schedule_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -150,31 +156,50 @@
           <EntitySetMapping Name="LineUps">
             <EntityTypeMapping TypeName="FFBModel.LineUps">
               <MappingFragment StoreEntitySet="LineUps">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="QB" ColumnName="QB" />
-                <ScalarProperty Name="RB1" ColumnName="RB1" />
-                <ScalarProperty Name="RB2" ColumnName="RB2" />
-                <ScalarProperty Name="WR1" ColumnName="WR1" />
-                <ScalarProperty Name="WR2" ColumnName="WR2" />
-                <ScalarProperty Name="WR3" ColumnName="WR3" />
-                <ScalarProperty Name="TE" ColumnName="TE" />
-                <ScalarProperty Name="FLEX" ColumnName="FLEX" />
-                <ScalarProperty Name="DST" ColumnName="DST" />
-                <ScalarProperty Name="Total_Salary" ColumnName="Total_Salary" />
                 <ScalarProperty Name="Projected_FFP" ColumnName="Projected_FFP" />
+                <ScalarProperty Name="Total_Salary" ColumnName="Total_Salary" />
+                <ScalarProperty Name="DST" ColumnName="DST" />
+                <ScalarProperty Name="FLEX" ColumnName="FLEX" />
+                <ScalarProperty Name="TE" ColumnName="TE" />
+                <ScalarProperty Name="WR3" ColumnName="WR3" />
+                <ScalarProperty Name="WR2" ColumnName="WR2" />
+                <ScalarProperty Name="WR1" ColumnName="WR1" />
+                <ScalarProperty Name="RB2" ColumnName="RB2" />
+                <ScalarProperty Name="RB1" ColumnName="RB1" />
+                <ScalarProperty Name="QB" ColumnName="QB" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="FFBModel.Players">
               <MappingFragment StoreEntitySet="Players">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="AvgPointsPerGame" ColumnName="AvgPointsPerGame" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="GameInfo" ColumnName="GameInfo" />
                 <ScalarProperty Name="teamAbbrev" ColumnName="teamAbbrev" />
+                <ScalarProperty Name="GameInfo" ColumnName="GameInfo" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="AvgPointsPerGame" ColumnName="AvgPointsPerGame" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule_Types">
+            <EntityTypeMapping TypeName="FFBModel.Schedule_Types">
+              <MappingFragment StoreEntitySet="Schedule_Types">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="FFBModel.Schedules">
+              <MappingFragment StoreEntitySet="Schedules">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Schedule_Type_Id" ColumnName="Schedule_Type_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -192,7 +217,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

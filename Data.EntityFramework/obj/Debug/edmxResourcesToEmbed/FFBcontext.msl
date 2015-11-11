@@ -4,31 +4,50 @@
     <EntitySetMapping Name="LineUps">
       <EntityTypeMapping TypeName="FFBModel.LineUps">
         <MappingFragment StoreEntitySet="LineUps">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="QB" ColumnName="QB" />
-          <ScalarProperty Name="RB1" ColumnName="RB1" />
-          <ScalarProperty Name="RB2" ColumnName="RB2" />
-          <ScalarProperty Name="WR1" ColumnName="WR1" />
-          <ScalarProperty Name="WR2" ColumnName="WR2" />
-          <ScalarProperty Name="WR3" ColumnName="WR3" />
-          <ScalarProperty Name="TE" ColumnName="TE" />
-          <ScalarProperty Name="FLEX" ColumnName="FLEX" />
-          <ScalarProperty Name="DST" ColumnName="DST" />
-          <ScalarProperty Name="Total_Salary" ColumnName="Total_Salary" />
           <ScalarProperty Name="Projected_FFP" ColumnName="Projected_FFP" />
+          <ScalarProperty Name="Total_Salary" ColumnName="Total_Salary" />
+          <ScalarProperty Name="DST" ColumnName="DST" />
+          <ScalarProperty Name="FLEX" ColumnName="FLEX" />
+          <ScalarProperty Name="TE" ColumnName="TE" />
+          <ScalarProperty Name="WR3" ColumnName="WR3" />
+          <ScalarProperty Name="WR2" ColumnName="WR2" />
+          <ScalarProperty Name="WR1" ColumnName="WR1" />
+          <ScalarProperty Name="RB2" ColumnName="RB2" />
+          <ScalarProperty Name="RB1" ColumnName="RB1" />
+          <ScalarProperty Name="QB" ColumnName="QB" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Players">
       <EntityTypeMapping TypeName="FFBModel.Players">
         <MappingFragment StoreEntitySet="Players">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-          <ScalarProperty Name="AvgPointsPerGame" ColumnName="AvgPointsPerGame" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="GameInfo" ColumnName="GameInfo" />
           <ScalarProperty Name="teamAbbrev" ColumnName="teamAbbrev" />
+          <ScalarProperty Name="GameInfo" ColumnName="GameInfo" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="AvgPointsPerGame" ColumnName="AvgPointsPerGame" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schedule_Types">
+      <EntityTypeMapping TypeName="FFBModel.Schedule_Types">
+        <MappingFragment StoreEntitySet="Schedule_Types">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="FFBModel.Schedules">
+        <MappingFragment StoreEntitySet="Schedules">
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Schedule_Type_Id" ColumnName="Schedule_Type_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
