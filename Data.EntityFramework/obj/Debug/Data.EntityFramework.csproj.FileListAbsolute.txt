@@ -1,0 +1,10 @@
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\bin\Debug\Data.EntityFramework.dll.config
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\bin\Debug\Data.EntityFramework.dll
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\bin\Debug\Data.EntityFramework.pdb
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.dll
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.xml
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.csprojResolveAssemblyReference.cache
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.dll
+C:\Skip Stuff\projects\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.pdb

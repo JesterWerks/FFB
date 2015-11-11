@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FFBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FFBModelStoreContainer">
+          <EntitySet Name="LineUps" EntityType="FFBModel.Store.LineUps" store:Type="Tables" store:Schema="dbo" store:Name="LineUps">
+            <DefiningQuery>SELECT 
+      [LineUps].[Id] AS [Id], 
+      [LineUps].[QB] AS [QB], 
+      [LineUps].[RB1] AS [RB1], 
+      [LineUps].[RB2] AS [RB2], 
+      [LineUps].[WR1] AS [WR1], 
+      [LineUps].[WR2] AS [WR2], 
+      [LineUps].[WR3] AS [WR3], 
+      [LineUps].[TE] AS [TE], 
+      [LineUps].[FLEX] AS [FLEX], 
+      [LineUps].[DST] AS [DST], 
+      [LineUps].[Total_Salary] AS [Total_Salary], 
+      [LineUps].[Projected_FFP] AS [Projected_FFP]
+      FROM [dbo].[LineUps] AS [LineUps]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Players" EntityType="FFBModel.Store.Players" store:Type="Tables" store:Schema="dbo" store:Name="Players">
+            <DefiningQuery>SELECT 
+      [Players].[Id] AS [Id], 
+      [Players].[Name] AS [Name], 
+      [Players].[Salary] AS [Salary], 
+      [Players].[AvgPointsPerGame] AS [AvgPointsPerGame], 
+      [Players].[Position] AS [Position], 
+      [Players].[GameInfo] AS [GameInfo], 
+      [Players].[teamAbbrev] AS [teamAbbrev]
+      FROM [dbo].[Players] AS [Players]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'FFB.dbo.LineUps' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="LineUps">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="QB" />
+            <PropertyRef Name="RB1" />
+            <PropertyRef Name="RB2" />
+            <PropertyRef Name="WR1" />
+            <PropertyRef Name="WR2" />
+            <PropertyRef Name="WR3" />
+            <PropertyRef Name="TE" />
+            <PropertyRef Name="FLEX" />
+            <PropertyRef Name="DST" />
+            <PropertyRef Name="Total_Salary" />
+            <PropertyRef Name="Projected_FFP" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QB" Type="int" Nullable="false" />
+          <Property Name="RB1" Type="int" Nullable="false" />
+          <Property Name="RB2" Type="int" Nullable="false" />
+          <Property Name="WR1" Type="int" Nullable="false" />
+          <Property Name="WR2" Type="int" Nullable="false" />
+          <Property Name="WR3" Type="int" Nullable="false" />
+          <Property Name="TE" Type="int" Nullable="false" />
+          <Property Name="FLEX" Type="int" Nullable="false" />
+          <Property Name="DST" Type="int" Nullable="false" />
+          <Property Name="Total_Salary" Type="decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="Projected_FFP" Type="decimal" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'FFB.dbo.Players' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="AvgPointsPerGame" />
+            <PropertyRef Name="Position" />
+            <PropertyRef Name="GameInfo" />
+            <PropertyRef Name="teamAbbrev" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="60" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="AvgPointsPerGame" Type="decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="Position" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="GameInfo" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="teamAbbrev" Type="varchar" Nullable="false" MaxLength="3" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FFBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FFBcontext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="LineUps" EntityType="FFBModel.LineUps" />
+          <EntitySet Name="Players" EntityType="FFBModel.Players" />
+        </EntityContainer>
+        <EntityType Name="LineUps">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="QB" />
+            <PropertyRef Name="RB1" />
+            <PropertyRef Name="RB2" />
+            <PropertyRef Name="WR1" />
+            <PropertyRef Name="WR2" />
+            <PropertyRef Name="WR3" />
+            <PropertyRef Name="TE" />
+            <PropertyRef Name="FLEX" />
+            <PropertyRef Name="DST" />
+            <PropertyRef Name="Total_Salary" />
+            <PropertyRef Name="Projected_FFP" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QB" Type="Int32" Nullable="false" />
+          <Property Name="RB1" Type="Int32" Nullable="false" />
+          <Property Name="RB2" Type="Int32" Nullable="false" />
+          <Property Name="WR1" Type="Int32" Nullable="false" />
+          <Property Name="WR2" Type="Int32" Nullable="false" />
+          <Property Name="WR3" Type="Int32" Nullable="false" />
+          <Property Name="TE" Type="Int32" Nullable="false" />
+          <Property Name="FLEX" Type="Int32" Nullable="false" />
+          <Property Name="DST" Type="Int32" Nullable="false" />
+          <Property Name="Total_Salary" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="Projected_FFP" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="AvgPointsPerGame" />
+            <PropertyRef Name="Position" />
+            <PropertyRef Name="GameInfo" />
+            <PropertyRef Name="teamAbbrev" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="AvgPointsPerGame" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="GameInfo" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="teamAbbrev" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FFBModelStoreContainer" CdmEntityContainer="FFBcontext">
+          <EntitySetMapping Name="LineUps">
+            <EntityTypeMapping TypeName="FFBModel.LineUps">
+              <MappingFragment StoreEntitySet="LineUps">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QB" ColumnName="QB" />
+                <ScalarProperty Name="RB1" ColumnName="RB1" />
+                <ScalarProperty Name="RB2" ColumnName="RB2" />
+                <ScalarProperty Name="WR1" ColumnName="WR1" />
+                <ScalarProperty Name="WR2" ColumnName="WR2" />
+                <ScalarProperty Name="WR3" ColumnName="WR3" />
+                <ScalarProperty Name="TE" ColumnName="TE" />
+                <ScalarProperty Name="FLEX" ColumnName="FLEX" />
+                <ScalarProperty Name="DST" ColumnName="DST" />
+                <ScalarProperty Name="Total_Salary" ColumnName="Total_Salary" />
+                <ScalarProperty Name="Projected_FFP" ColumnName="Projected_FFP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="FFBModel.Players">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="AvgPointsPerGame" ColumnName="AvgPointsPerGame" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="GameInfo" ColumnName="GameInfo" />
+                <ScalarProperty Name="teamAbbrev" ColumnName="teamAbbrev" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

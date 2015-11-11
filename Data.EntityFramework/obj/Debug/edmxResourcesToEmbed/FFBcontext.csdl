@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FFBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FFBcontext" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="LineUps" EntityType="FFBModel.LineUps" />
+    <EntitySet Name="Players" EntityType="FFBModel.Players" />
+  </EntityContainer>
+  <EntityType Name="LineUps">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="QB" />
+      <PropertyRef Name="RB1" />
+      <PropertyRef Name="RB2" />
+      <PropertyRef Name="WR1" />
+      <PropertyRef Name="WR2" />
+      <PropertyRef Name="WR3" />
+      <PropertyRef Name="TE" />
+      <PropertyRef Name="FLEX" />
+      <PropertyRef Name="DST" />
+      <PropertyRef Name="Total_Salary" />
+      <PropertyRef Name="Projected_FFP" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="QB" Type="Int32" Nullable="false" />
+    <Property Name="RB1" Type="Int32" Nullable="false" />
+    <Property Name="RB2" Type="Int32" Nullable="false" />
+    <Property Name="WR1" Type="Int32" Nullable="false" />
+    <Property Name="WR2" Type="Int32" Nullable="false" />
+    <Property Name="WR3" Type="Int32" Nullable="false" />
+    <Property Name="TE" Type="Int32" Nullable="false" />
+    <Property Name="FLEX" Type="Int32" Nullable="false" />
+    <Property Name="DST" Type="Int32" Nullable="false" />
+    <Property Name="Total_Salary" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+    <Property Name="Projected_FFP" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Salary" />
+      <PropertyRef Name="AvgPointsPerGame" />
+      <PropertyRef Name="Position" />
+      <PropertyRef Name="GameInfo" />
+      <PropertyRef Name="teamAbbrev" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+    <Property Name="Salary" Type="Int32" Nullable="false" />
+    <Property Name="AvgPointsPerGame" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="GameInfo" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+    <Property Name="teamAbbrev" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

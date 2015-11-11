@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>FFB</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/scriptbundle")
+
+    </head>
+    <body>
+        <header>
+            <div id="masthead" class="jumbotron">
+                <h3>FBB</h3>
+            </div>
+            <nav>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="/Home" class="btn btn-primary">Home</a>
+                            <a href="/Admin" class="btn btn-primary">Admin</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>   
+        </header>
+
+        <div id="body" class="container">
+                @RenderBody()
+        </div>
+        <footer>
+        </footer>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

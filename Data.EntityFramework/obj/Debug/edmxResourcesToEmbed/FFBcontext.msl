@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FFBModelStoreContainer" CdmEntityContainer="FFBcontext">
+    <EntitySetMapping Name="LineUps">
+      <EntityTypeMapping TypeName="FFBModel.LineUps">
+        <MappingFragment StoreEntitySet="LineUps">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QB" ColumnName="QB" />
+          <ScalarProperty Name="RB1" ColumnName="RB1" />
+          <ScalarProperty Name="RB2" ColumnName="RB2" />
+          <ScalarProperty Name="WR1" ColumnName="WR1" />
+          <ScalarProperty Name="WR2" ColumnName="WR2" />
+          <ScalarProperty Name="WR3" ColumnName="WR3" />
+          <ScalarProperty Name="TE" ColumnName="TE" />
+          <ScalarProperty Name="FLEX" ColumnName="FLEX" />
+          <ScalarProperty Name="DST" ColumnName="DST" />
+          <ScalarProperty Name="Total_Salary" ColumnName="Total_Salary" />
+          <ScalarProperty Name="Projected_FFP" ColumnName="Projected_FFP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="FFBModel.Players">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="AvgPointsPerGame" ColumnName="AvgPointsPerGame" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="GameInfo" ColumnName="GameInfo" />
+          <ScalarProperty Name="teamAbbrev" ColumnName="teamAbbrev" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
