@@ -72,55 +72,75 @@ namespace FFB.Domain.SiteLogic
 
             foreach (PlayerModel QB in QBList)
             {
-                List<PlayerModel> tempFlexList = FLEXList;
+                List<PlayerModel> tempFlexList = new List<PlayerModel>();
+                tempFlexList.AddRange(FLEXList);
+
                 foreach (PlayerModel RB1 in RBList)
                 {
                     tempFlexList.RemoveAll(x => x.Id == RB1.Id);
+
                     foreach (PlayerModel RB2 in RBList)
                     {
                         if (RB2.Id == RB1.Id) { break; }
                         tempFlexList.RemoveAll(x => x.Id == RB2.Id);
+
                         foreach (PlayerModel WR1 in WRList)
                         {
                             tempFlexList.RemoveAll(x => x.Id == WR1.Id);
+
                             foreach (PlayerModel WR2 in WRList)
                             {
                                 if (WR2.Id == WR1.Id) { break; }
                                 tempFlexList.RemoveAll(x => x.Id == WR2.Id);
+
                                 foreach (PlayerModel WR3 in WRList)
                                 {
                                     if (WR3.Id == WR1.Id || WR3.Id == WR2.Id) { break; }
                                     tempFlexList.RemoveAll(x => x.Id == WR3.Id);
+
                                     foreach (PlayerModel TE in TEList)
                                     {
                                         tempFlexList.RemoveAll(x => x.Id == TE.Id);
+
                                         foreach (PlayerModel DST in DSTList)
                                         {
+
                                             foreach (PlayerModel FLEX in tempFlexList)
                                             {
-                                                    LineUpModel lu = new LineUpModel();
-                                                    lu.QB = QB;
-                                                    lu.RB1 = RB1;
-                                                    lu.RB2 = RB2;
-                                                    lu.WR1 = WR1;
-                                                    lu.WR2 = WR2;
-                                                    lu.WR3 = WR3;
-                                                    lu.TE = TE;
-                                                    lu.FLEX = FLEX;
-                                                    lu.DST = DST;
+                
+                                                LineUpModel lu = new LineUpModel();
+                                                lu.QB = QB;
+                                                lu.RB1 = RB1;
+                                                lu.RB2 = RB2;
+                                                lu.WR1 = WR1;
+                                                lu.WR2 = WR2;
+                                                lu.WR3 = WR3;
+                                                lu.TE = TE;
+                                                lu.FLEX = FLEX;
+                                                lu.DST = DST;
+                                                lu.TotalSalary = QB.Salary + RB1.Salary + RB2.Salary + WR1.Salary + WR2.Salary + WR3.Salary + TE.Salary + FLEX.Salary + DST.Salary;
+                                                if (lu.TotalSalary <= 50000)
+                                                {
                                                     lineUps.Add(lu);
-                                                
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                
-            }
+                                                }
+
+                                            } // end FLEX
+
+                                        } // end DST
+
+                                    } // end TE
+
+                                } // end WR3
+
+                            } // end WR2
+
+                        } // end WR1
+
+                    } // end RB2
+
+                } // end RB1                                
+
+            } // end QB
 
 
             return lineUps;
