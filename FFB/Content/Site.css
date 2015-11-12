@@ -5,3 +5,8 @@
 .pad-top-15 {
     padding-top: 15px;
 }
+
+#player-selection-list{
+    height: 600px;
+    overflow-y: scroll !important;
+}

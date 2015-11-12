@@ -18,3 +18,13 @@ C:\Skip Stuff\GitHub\FFB\Data.EntityFramework\bin\Debug\EntityFramework.SqlServe
 C:\Skip Stuff\GitHub\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.csprojResolveAssemblyReference.cache
 C:\Skip Stuff\GitHub\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.dll
 C:\Skip Stuff\GitHub\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.pdb
+C:\Projects\FFB\Data.EntityFramework\bin\Debug\Data.EntityFramework.dll.config
+C:\Projects\FFB\Data.EntityFramework\bin\Debug\Data.EntityFramework.dll
+C:\Projects\FFB\Data.EntityFramework\bin\Debug\Data.EntityFramework.pdb
+C:\Projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.dll
+C:\Projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.xml
+C:\Projects\FFB\Data.EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.csprojResolveAssemblyReference.cache
+C:\Projects\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.dll
+C:\Projects\FFB\Data.EntityFramework\obj\Debug\Data.EntityFramework.pdb

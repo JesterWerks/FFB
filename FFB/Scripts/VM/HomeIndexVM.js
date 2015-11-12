@@ -16,6 +16,7 @@ var Player = function () {
     self.Salary = ko.observable();
     self.teamAbbrev = ko.observable();
     self.SelectPlayer = ko.observable(false);
+    self.ShowPlayer = ko.observable(false);
 };
 
 var LineUp = function () {
@@ -49,6 +50,7 @@ var Schedule = function () {
 var Home = function () {
     var self = this;
 
+    
     self.ShowQB = ko.observable(true);
     self.ShowRB = ko.observable(true);
     self.ShowWR = ko.observable(true);
@@ -84,6 +86,37 @@ var Home = function () {
         });
     };
     self.GetAllPlayersList();
+
+    self.SetPlayerVisibility = function(pos,vis){
+        jQuery.each(self.Players(),function(){
+            if (pos === "FLEX") {
+                if (self.ShowFLEX()) {
+                    self.ShowRB(true);
+                    self.ShowWR(true);
+                    self.ShowTE(true);
+                } else {
+                    self.ShowRB(false);
+                    self.ShowWR(false);
+                    self.ShowTE(false);
+                }
+                if (this.Position === "RB" || this.Position === "WR" || this.Position === "TE") {
+                    this.ShowPlayer(vis);
+                }
+            } else {
+                if (this.Position === pos) {
+                    this.ShowPlayer(vis);
+                }
+            }
+        });
+    };
+
+    self.SetQBVis = ko.computed(function () { self.SetPlayerVisibility('QB', self.ShowQB()); return true; });
+    self.SetRBVis = ko.computed(function () { self.SetPlayerVisibility('RB', self.ShowRB()); return true; });
+    self.SetWRVis = ko.computed(function () { self.SetPlayerVisibility('WR', self.ShowWR()); return true; });
+    self.SetTEVis = ko.computed(function () { self.SetPlayerVisibility('TE', self.ShowTE()); return true; });
+    self.SetDSTVis = ko.computed(function () { self.SetPlayerVisibility('DST', self.ShowDST()); return true; });
+    self.SetFLEXVis = ko.computed(function () { self.SetPlayerVisibility('FLEX', self.ShowFLEX()); return true; });
+    
 
     self.SelectedPlayersList = ko.observableArray([]);
     

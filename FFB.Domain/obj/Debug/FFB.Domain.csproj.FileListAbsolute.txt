@@ -22,3 +22,15 @@ C:\Skip Stuff\GitHub\FFB\FFB.Domain\bin\Debug\EntityFramework.SqlServer.xml
 C:\Skip Stuff\GitHub\FFB\FFB.Domain\obj\Debug\FFB.Domain.csprojResolveAssemblyReference.cache
 C:\Skip Stuff\GitHub\FFB\FFB.Domain\obj\Debug\FFB.Domain.dll
 C:\Skip Stuff\GitHub\FFB\FFB.Domain\obj\Debug\FFB.Domain.pdb
+C:\Projects\FFB\FFB.Domain\bin\Debug\FFB.Domain.dll.config
+C:\Projects\FFB\FFB.Domain\bin\Debug\FFB.Domain.dll
+C:\Projects\FFB\FFB.Domain\bin\Debug\FFB.Domain.pdb
+C:\Projects\FFB\FFB.Domain\bin\Debug\Data.EntityFramework.dll
+C:\Projects\FFB\FFB.Domain\bin\Debug\EntityFramework.dll
+C:\Projects\FFB\FFB.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\FFB\FFB.Domain\bin\Debug\Data.EntityFramework.pdb
+C:\Projects\FFB\FFB.Domain\bin\Debug\EntityFramework.xml
+C:\Projects\FFB\FFB.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects\FFB\FFB.Domain\obj\Debug\FFB.Domain.csprojResolveAssemblyReference.cache
+C:\Projects\FFB\FFB.Domain\obj\Debug\FFB.Domain.dll
+C:\Projects\FFB\FFB.Domain\obj\Debug\FFB.Domain.pdb

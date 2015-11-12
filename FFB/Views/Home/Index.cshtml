@@ -1,69 +1,33 @@
 ﻿<script src="~/Scripts/VM/HomeIndexVM.js"></script>
 
-<div class="row pad-top-15" id="schedule-selection">
-    <div class="col-xs-6">
-        <div class="row">
-            <div class="col-xs-4">
-                <label for="showQB" class="control-label">Show QB <input type="checkbox" id="showQB" data-bind="checked: ShowQB, value: ShowQB" /></label>
-            </div>
-            <div class="col-xs-4">
-                <label for="showRB" class="control-label">Show RB <input type="checkbox" id="showRB" data-bind="checked: ShowRB, value: ShowRB" /></label>
-            </div>
-            <div class="col-xs-4">
-                <label for="showWR" class="control-label">Show WR <input type="checkbox" id="showWR" data-bind="checked: ShowWR, value: ShowWR" /></label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                <label for="showTE" class="control-label">Show TE <input type="checkbox" id="showTE" data-bind="checked: ShowTE, value: ShowTE" /></label>
-            </div>
-            <div class="col-xs-4">
-                <label for="showDST" class="control-label">Show DST <input type="checkbox" id="showDST" data-bind="checked: ShowDST, value: ShowDST" /></label>
-            </div>
-            <div class="col-xs-4">
-                <label for="showFLEX" class="control-label">Show FLEX <input type="checkbox" id="showFLEX" data-bind="checked: ShowFLEX, value: ShowFLEX" /></label>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-3">
-    </div>
-    <div class="col-xs-6">
-        <fieldset>
-            <legend>Schedule Selection</legend>
-            <label for="scheduleSelection" class="control-label">Select schedule of games to pick players from.</label>
-            <select id="scheduleSelection" name="ScheduleSelection" class="form-control" data-bind="">
-
-            </select>
-        </fieldset>
-        
-    </div>
-</div>
-<div class="row" id="player-selection" data-bind="visible: !PlayerSelectionComplete()">
-    <div class="col-md-6 col-xs-12 pad-top-15">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="text-left">Name</th>
-                    <th class="text-center">Pos.</th>
-                    <th class="text-center">Avg</th>
-                    <th class="text-center">Salary</th>
-                    <th class="text-center">Select</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: Players">
-                <tr data-bind="visible: $root.ShowQB() || $root.ShowRB() || $root.ShowWR() || $root.ShowTE() || $root.ShowDST() || $root.ShowFLEX()">
-                    <td class="text-left" data-bind="text: Name"></td>
-                    <td class="text-center" data-bind="text: Position"></td>
-                    <td class="text-center" data-bind="text: AvgPointsPerGame"></td>
-                    <td class="text-center" data-bind="text: Salary"></td>
-                    <td class="text-center"><input type="checkbox" data-bind="checkedValue: $data, checked: $root.SelectedPlayersList" /></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6 col-xs-12 pad-top-15">
+<div class="row" data-bind="visible: !PlayerSelectionComplete()">
+    @* Left Column *@
+    <div class="col-xs-6 pad-top-15">
+        @* Schedule selection *@
         <div class="row">
             <div class="col-xs-12">
+                <fieldset>
+                    <legend>Schedule Selection</legend>
+                    <label for="scheduleSelection" class="control-label">Select schedule of games to pick players from.</label>
+                    <select id="scheduleSelection" name="ScheduleSelection" class="form-control" data-bind=""></select>
+                </fieldset>
+            </div>
+        </div>
+
+        @* Player Show/Hide *@
+        <div class="row pad-top-15">
+            <div class="col-xs-2"><p>Show: </p></div>
+            <div class="col-xs-1"><p>QB <input type="checkbox" id="showQB" data-bind="checked: ShowQB, value: ShowQB" /></p></div>
+            <div class="col-xs-1"><p>RB <input type="checkbox" id="showRB" data-bind="checked: ShowRB, value: ShowRB" /></p></div>
+            <div class="col-xs-1"><p>WR <input type="checkbox" id="showWR" data-bind="checked: ShowWR, value: ShowWR" /></p></div>
+            <div class="col-xs-1"><p>TE <input type="checkbox" id="showTE" data-bind="checked: ShowTE, value: ShowTE" /></p></div>
+            <div class="col-xs-1"><p>FLEX <input type="checkbox" id="showFLEX" data-bind="checked: ShowFLEX, value: ShowFLEX" /></p></div>
+            <div class="col-xs-1"><p>DST <input type="checkbox" id="showDST" data-bind="checked: ShowDST, value: ShowDST" /></p></div>
+        </div>
+
+        @* Required Postitions Count *@
+        <div class="row">
+            <div class="col-xs-12 pad-top-15">
                 <table class="table">
                     <thead>
                         <tr>
@@ -88,35 +52,75 @@
                 </table>
             </div>
         </div>
+
+        @* Selected Players List *@
         <div class="row">
-            <div class="col-xs-12">
-                <button type="button" class="btn btn-primary btn-block" data-bind="enable: AllPositionsFilled(), click: SubmitPlayerList">Submit List</button>
+            <div class="col-xs-12 pad-top-15">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Name</th>
+                            <th class="text-center">Pos.</th>
+                            <th class="text-center">Avg</th>
+                            <th class="text-center">Salary</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: SelectedPlayersList">
+                        <tr>
+                            <td class="text-left" data-bind="text: Name"></td>
+                            <td class="text-center" data-bind="text: Position"></td>
+                            <td class="text-center" data-bind="text: AvgPointsPerGame"></td>
+                            <td class="text-center" data-bind="text: Salary"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 pad-top-15">
+                <button type="button" class="btn btn-primary btn-block" data-bind="enable: AllPositionsFilled(), click: SubmitPlayerList">Submit List</button>
+            </div>
+        </div>
+    </div>
+
+    @* Right Column *@
+    <div class="col-xs-6 pad-top-15">
+        <div class="row">
+            <div class="col-xs-12">
+                <fieldset>
+                    <legend>Player Selection</legend>
+                </fieldset>
+            </div>
+        </div>
+        @* Player Selection List *@
+        <div class="row">
+            <div class="col-xs-12 pad-top-15" id="player-selection-list">
                 <table class="table">
-            <thead>
-                <tr>
-                    <th class="text-left">Name</th>
-                    <th class="text-center">Pos.</th>
-                    <th class="text-center">Avg</th>
-                    <th class="text-center">Salary</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: SelectedPlayersList">
-                <tr data-bind="css: { 'bg-success': SelectPlayer() }">
-                    <td class="text-left" data-bind="text: Name"></td>
-                    <td class="text-center" data-bind="text: Position"></td>
-                    <td class="text-center" data-bind="text: AvgPointsPerGame"></td>
-                    <td class="text-center" data-bind="text: Salary"></td>
-                </tr>
-            </tbody>
-        </table>
+                    <thead>
+                        <tr>
+                            <th class="text-left">Name</th>
+                            <th class="text-center">Pos.</th>
+                            <th class="text-center">Avg</th>
+                            <th class="text-center">Salary</th>
+                            <th class="text-center">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: Players">
+                        <tr data-bind="visible: ShowPlayer()">
+                            <td class="text-left" data-bind="text: Name"></td>
+                            <td class="text-center" data-bind="text: Position"></td>
+                            <td class="text-center" data-bind="text: AvgPointsPerGame"></td>
+                            <td class="text-center" data-bind="text: Salary"></td>
+                            <td class="text-center"><input type="checkbox" data-bind="checkedValue: $data, checked: $root.SelectedPlayersList" /></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+
 <div class="row" id="lineup-selection" data-bind="visible: PlayerSelectionComplete()">
     <div class="col-xs-12">
         <div class="row" data-bind="foreach: GeneratedLineUps">
