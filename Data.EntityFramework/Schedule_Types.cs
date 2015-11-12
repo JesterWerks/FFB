@@ -16,12 +16,12 @@ namespace Data.EntityFramework
     {
         public Schedule_Types()
         {
-            this.Schedules = new HashSet<Schedules>();
+            this.PlayerLists = new HashSet<PlayerLists>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Schedules> Schedules { get; set; }
+        public virtual ICollection<PlayerLists> PlayerLists { get; set; }
     }
 }

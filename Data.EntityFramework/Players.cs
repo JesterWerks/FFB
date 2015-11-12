@@ -21,5 +21,6 @@ namespace Data.EntityFramework
         public string Position { get; set; }
         public string GameInfo { get; set; }
         public string teamAbbrev { get; set; }
+        public int PlayerListId { get; set; }
     }
 }

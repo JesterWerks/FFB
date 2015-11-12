@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,8 +53,10 @@
   <ItemGroup>
     <Compile Include="Models\LineUpModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
-    <Compile Include="Models\ScheduleModel.cs" />
+    <Compile Include="Models\PlayerListModel.cs" />
+    <Compile Include="Models\ScheduleTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteLogic\AdminLogic.cs" />
     <Compile Include="SiteLogic\HomeLogic.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,8 +4,8 @@
     <EntitySetMapping Name="LineUps">
       <EntityTypeMapping TypeName="FFBModel.LineUps">
         <MappingFragment StoreEntitySet="LineUps">
-          <ScalarProperty Name="Projected_FFP" ColumnName="Projected_FFP" />
-          <ScalarProperty Name="Total_Salary" ColumnName="Total_Salary" />
+          <ScalarProperty Name="ProjectedFFP" ColumnName="ProjectedFFP" />
+          <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
           <ScalarProperty Name="DST" ColumnName="DST" />
           <ScalarProperty Name="FLEX" ColumnName="FLEX" />
           <ScalarProperty Name="TE" ColumnName="TE" />
@@ -19,9 +19,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PlayerLists">
+      <EntityTypeMapping TypeName="FFBModel.PlayerLists">
+        <MappingFragment StoreEntitySet="PlayerLists">
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="ScheduleTypeId" ColumnName="ScheduleTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Players">
       <EntityTypeMapping TypeName="FFBModel.Players">
         <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="PlayerListId" ColumnName="PlayerListId" />
           <ScalarProperty Name="teamAbbrev" ColumnName="teamAbbrev" />
           <ScalarProperty Name="GameInfo" ColumnName="GameInfo" />
           <ScalarProperty Name="Position" ColumnName="Position" />
@@ -36,17 +47,6 @@
       <EntityTypeMapping TypeName="FFBModel.Schedule_Types">
         <MappingFragment StoreEntitySet="Schedule_Types">
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Schedules">
-      <EntityTypeMapping TypeName="FFBModel.Schedules">
-        <MappingFragment StoreEntitySet="Schedules">
-          <ScalarProperty Name="Note" ColumnName="Note" />
-          <ScalarProperty Name="Week" ColumnName="Week" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="Schedule_Type_Id" ColumnName="Schedule_Type_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

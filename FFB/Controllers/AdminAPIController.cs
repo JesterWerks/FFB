@@ -1,4 +1,5 @@
 ﻿using FFB.Domain.Models;
+using FFB.Domain.SiteLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,11 @@ namespace FFB.Controllers
 {
     public class AdminAPIController : ApiController
     {
-        //[HttpGet]
-        //public bool AddSchedule(ScheduleModel sched)
-        //{
-
-        //}
+        [HttpGet]
+        public List<ScheduleTypeModel> GetScheduleTypes()
+        {
+            var result = AdminLogic.GetScheduleTypes();
+            return result;
+        }
     }
 }

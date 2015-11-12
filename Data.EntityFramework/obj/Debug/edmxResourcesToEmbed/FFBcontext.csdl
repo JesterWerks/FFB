@@ -2,12 +2,12 @@
 <Schema Namespace="FFBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="FFBcontext" p1:LazyLoadingEnabled="true">
     <EntitySet Name="LineUps" EntityType="FFBModel.LineUps" />
+    <EntitySet Name="PlayerLists" EntityType="FFBModel.PlayerLists" />
     <EntitySet Name="Players" EntityType="FFBModel.Players" />
     <EntitySet Name="Schedule_Types" EntityType="FFBModel.Schedule_Types" />
-    <EntitySet Name="Schedules" EntityType="FFBModel.Schedules" />
     <AssociationSet Name="FK_Schedules_Schedule_Types" Association="FFBModel.FK_Schedules_Schedule_Types">
       <End Role="Schedule_Types" EntitySet="Schedule_Types" />
-      <End Role="Schedules" EntitySet="Schedules" />
+      <End Role="PlayerLists" EntitySet="PlayerLists" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="LineUps">
@@ -24,8 +24,18 @@
     <Property Type="Int32" Name="TE" Nullable="false" />
     <Property Type="Int32" Name="FLEX" Nullable="false" />
     <Property Type="Int32" Name="DST" Nullable="false" />
-    <Property Type="Decimal" Name="Total_Salary" Nullable="false" Precision="4" Scale="2" />
-    <Property Type="Decimal" Name="Projected_FFP" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="TotalSalary" Nullable="false" Precision="4" Scale="2" />
+    <Property Type="Decimal" Name="ProjectedFFP" Nullable="false" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="PlayerLists">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ScheduleTypeId" Nullable="false" />
+    <Property Type="Int32" Name="Year" Nullable="false" />
+    <Property Type="Int32" Name="Week" Nullable="false" />
+    <NavigationProperty Name="Schedule_Types" Relationship="FFBModel.FK_Schedules_Schedule_Types" FromRole="PlayerLists" ToRole="Schedule_Types" />
   </EntityType>
   <EntityType Name="Players">
     <Key>
@@ -38,6 +48,7 @@
     <Property Type="String" Name="Position" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="GameInfo" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="teamAbbrev" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="PlayerListId" Nullable="false" />
   </EntityType>
   <EntityType Name="Schedule_Types">
     <Key>
@@ -45,28 +56,17 @@
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Schedules" Relationship="FFBModel.FK_Schedules_Schedule_Types" FromRole="Schedule_Types" ToRole="Schedules" />
-  </EntityType>
-  <EntityType Name="Schedules">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="Schedule_Type_Id" Nullable="false" />
-    <Property Type="Int32" Name="Year" Nullable="false" />
-    <Property Type="Int32" Name="Week" Nullable="false" />
-    <Property Type="String" Name="Note" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Schedule_Types" Relationship="FFBModel.FK_Schedules_Schedule_Types" FromRole="Schedules" ToRole="Schedule_Types" />
+    <NavigationProperty Name="PlayerLists" Relationship="FFBModel.FK_Schedules_Schedule_Types" FromRole="Schedule_Types" ToRole="PlayerLists" />
   </EntityType>
   <Association Name="FK_Schedules_Schedule_Types">
     <End Type="FFBModel.Schedule_Types" Role="Schedule_Types" Multiplicity="1" />
-    <End Type="FFBModel.Schedules" Role="Schedules" Multiplicity="*" />
+    <End Type="FFBModel.PlayerLists" Role="PlayerLists" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Schedule_Types">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Schedules">
-        <PropertyRef Name="Schedule_Type_Id" />
+      <Dependent Role="PlayerLists">
+        <PropertyRef Name="ScheduleTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

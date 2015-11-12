@@ -12,12 +12,7 @@ namespace FFB.Controllers
 {
     public class HomeAPIController : ApiController
     {
-        [HttpGet]
-        public List<ScheduleModel> GetSchedules()
-        {
-            var result = HomeLogic.GetSchedules();
-            return result;
-        }
+        
         
         [HttpGet]
         public List<PlayerModel> GetAllPlayers()

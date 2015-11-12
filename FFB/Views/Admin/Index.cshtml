@@ -1,7 +1,54 @@
-﻿
+﻿<script src="~/Scripts/VM/AdminIndexVM.js"></script>
+
 <div class="row">
     <div class="col-xs-12">
-        <h3>Schedules</h3>
+        <h2>Import Player List</h2>
     </div>
 </div>
->
+
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <form method="post" action="/Admin/ImportPlayerList" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Select File to Import</legend>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="fileImport" class="control-label">File</label>
+                    <input type="file" id="fileImport" name="File" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 pad-top-15">
+                    <label for="selectYear" class="control-label">Year</label>
+                    @{
+                        int year = DateTime.Now.Year;                    
+                        <input id="selectYear" class="form-control" name="Year" value="@year" />
+                    }
+                </div>
+                <div class="col-xs-3 pad-top-15">
+                    <label for="selectWeek" class="control-label">Week</label>
+                    <select id="selectWeek" class="form-control" name="Week">
+                        <option>Select...</option>
+                        @{
+                            for(var w = 1; w <= 17; w++){
+                                <option value="@w">@w</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-xs-6 pad-top-15">
+                    <label for="selectType" class="control-label">Type</label>
+                    <select id="selectType" name="Id" class="form-control" data-bind="foreach: ScheduleTypeList">
+                        <option data-bind="value: Id, text: Name"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 pad-top-15">
+                    <input type="submit" name="submit" class="btn btn-primary btn-block" value="Import Player List" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

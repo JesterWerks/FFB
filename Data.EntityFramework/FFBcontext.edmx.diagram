@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ce84ba8842cb4360b1c53dfba8008dbc" Name="Diagram1">
-        <EntityTypeShape EntityType="FFBModel.LineUps" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="FFBModel.Players" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="FFBModel.Schedule_Types" Width="1.5" PointX="0.75" PointY="1.25" />
-        <EntityTypeShape EntityType="FFBModel.Schedules" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="FFBModel.LineUps" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FFBModel.PlayerLists" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="FFBModel.Players" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FFBModel.Schedule_Types" Width="1.5" PointX="0.75" PointY="1.125" />
         <AssociationConnector Association="FFBModel.FK_Schedules_Schedule_Types" />
       </Diagram>
     </edmx:Diagrams>

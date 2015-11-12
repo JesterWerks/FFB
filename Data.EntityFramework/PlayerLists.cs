@@ -12,13 +12,12 @@ namespace Data.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class Schedules
+    public partial class PlayerLists
     {
         public int Id { get; set; }
-        public int Schedule_Type_Id { get; set; }
+        public int ScheduleTypeId { get; set; }
         public int Year { get; set; }
         public int Week { get; set; }
-        public string Note { get; set; }
     
         public virtual Schedule_Types Schedule_Types { get; set; }
     }

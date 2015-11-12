@@ -24,7 +24,7 @@ namespace Data.EntityFramework
         public int TE { get; set; }
         public int FLEX { get; set; }
         public int DST { get; set; }
-        public decimal Total_Salary { get; set; }
-        public decimal Projected_FFP { get; set; }
+        public decimal TotalSalary { get; set; }
+        public decimal ProjectedFFP { get; set; }
     }
 }
