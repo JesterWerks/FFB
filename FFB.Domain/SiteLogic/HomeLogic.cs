@@ -104,6 +104,7 @@ namespace FFB.Domain.SiteLogic
                                                 lu.FLEX = FLEX;
                                                 lu.DST = DST;
                                                 lu.TotalSalary = QB.Salary + RB1.Salary + RB2.Salary + WR1.Salary + WR2.Salary + WR3.Salary + TE.Salary + FLEX.Salary + DST.Salary;
+                                                lu.ProjectedFFP = QB.AvgPointsPerGame + RB1.AvgPointsPerGame + RB2.AvgPointsPerGame + WR1.AvgPointsPerGame + WR2.AvgPointsPerGame + WR3.AvgPointsPerGame + TE.AvgPointsPerGame + FLEX.AvgPointsPerGame + DST.AvgPointsPerGame;
                                                 if (lu.TotalSalary <= 50000)
                                                 {
                                                     lineUps.Add(lu);
@@ -127,8 +128,15 @@ namespace FFB.Domain.SiteLogic
 
             } // end QB
 
+            lineUps.Sort((x, y) => y.ProjectedFFP.CompareTo(x.ProjectedFFP));
+            List<LineUpModel> result = new List<LineUpModel>();
 
-            return lineUps;
+            for (int i = 0; i < 100; i++)
+            {
+                result.Add(lineUps[i]);
+            }
+
+                return result;
         }
     }
 }

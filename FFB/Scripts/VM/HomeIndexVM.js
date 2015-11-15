@@ -134,33 +134,38 @@ var Home = function () {
     self.PlayerSelectionComplete = ko.observable(false);
     self.SubmitPlayerList = function () {
         if (self.SelectedPlayersList()) {
+            self.PlayerSelectionComplete(true);
             jQuery.ajax("../api/HomeAPI/GenerateLineUps", {
                 data: ko.mapping.toJSON(self.SelectedPlayersList()),
                 type: "post",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    var lineUps = [];
-                    jQuery.each(data, function () {
-                        console.log(this);
-                        var lineup = new LineUp();
+                    if (data) {
+                        var lineUps = [];
+                        jQuery.each(data, function () {
+                            console.log(this);
+                            var lineup = new LineUp();
+
+                            lineup.Id(this.Id);
+                            lineup.QB(this.QB);
+                            lineup.RB1(this.RB1);
+                            lineup.RB2(this.RB2);
+                            lineup.WR1(this.WR1);
+                            lineup.WR2(this.WR2);
+                            lineup.WR3(this.WR3);
+                            lineup.TE(this.TE);
+                            lineup.FLEX(this.FLEX);
+                            lineup.DST(this.DST);
+                            lineup.TotalSalary(this.TotalSalary);
+                            lineup.ProjectedFFP(this.ProjectedFFP);
+                            lineUps.push(lineup);
+                        });
+                        self.GeneratedLineUps(lineUps);
                         
-                        lineup.Id(this.Id);
-                        lineup.QB(this.QB);
-                        lineup.RB1(this.RB1);
-                        lineup.RB2(this.RB2);
-                        lineup.WR1(this.WR1);
-                        lineup.WR2(this.WR2);
-                        lineup.WR3(this.WR3);
-                        lineup.TE(this.TE);
-                        lineup.FLEX(this.FLEX);
-                        lineup.DST(this.DST);
-                        lineup.TotalSalary(this.TotalSalary);
-                        lineup.ProjectedFFP(this.ProjectedFFP);
-                        lineUps.push(lineup);
-                    });
-                    self.GeneratedLineUps(lineUps);
-                    self.PlayerSelectionComplete(true);
+                    } else {
+                        console.log("No Line Ups")
+                    }
                 }
             }).fail(function () { });
         } else {
