@@ -10,3 +10,7 @@
     height: 600px;
     overflow-y: scroll !important;
 }
+
+.lineUps-container {
+    margin: 3px;
+}

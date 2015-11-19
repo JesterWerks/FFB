@@ -1,6 +1,6 @@
 ﻿<script src="~/Scripts/VM/HomeIndexVM.js"></script>
 
-<div class="row" data-bind="visible: !PlayerSelectionComplete()">
+<div class="row"@* data-bind="visible: !PlayerSelectionComplete()"*@>
     @* Left Column *@
     <div class="col-xs-6 pad-top-15">
         @* Schedule selection *@
@@ -121,10 +121,10 @@
 </div>
 
 
-<div class="row" id="lineup-selection" data-bind="visible: PlayerSelectionComplete()">
+<div class="row" id="lineup-selection"@* data-bind="visible: PlayerSelectionComplete()"*@>
     <div class="col-xs-12">
         <div class="row" data-bind="foreach: GeneratedLineUps">
-            <div class="col-xs-2 pad-top-15">
+            <div class="col-xs-2 pad-top-15 alert alert-success lineUps-container">
                 <p>QB: <span data-bind="text: QB().Name"></span></p>
                 <p>RB1: <span data-bind="text: RB1().Name"></span></p>
                 <p>RB2: <span data-bind="text: RB2().Name"></span></p>

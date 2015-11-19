@@ -131,7 +131,9 @@ namespace FFB.Domain.SiteLogic
             lineUps.Sort((x, y) => y.ProjectedFFP.CompareTo(x.ProjectedFFP));
             List<LineUpModel> result = new List<LineUpModel>();
 
-            for (int i = 0; i < 100; i++)
+            int maxCount = lineUps.Count < 200 ? lineUps.Count : 200;
+
+            for (int i = 0; i < maxCount; i++)
             {
                 result.Add(lineUps[i]);
             }
